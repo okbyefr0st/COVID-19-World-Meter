@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>COVID-19 World Meter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<script src = "C:\Users\Abhishek\Downloads\coronavirus-meter\coronavirus-meter\src\main\resources\static\search-table.js"></script>
+<div class="container">
+<h1>COVID-19 CORONAVIRUS PANDEMIC</h1>
+<p>The coronavirus COVID-19 is affecting 205 countries and territories around the world and 2 international conveyances. The day is reset after midnight GMT+0.</p>
+
+<div class="jumbotron"><b>
+    <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+    <p class="lead">Total cases reported as of today</p>
+    <hr class="my-4">
+    <p>
+        <span>New cases reported since previous day:</span>
+        <span th:text="${totalNewCases}"></span>
+    </p>
+    <p>
+        <span>New Cases in %</span>
+        <span th:text="${avgSurge}"></span>
+    </p>
+    <hr class="my-4">
+    <h5>Search for countries :</h5>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="India,Spain,etc..">
+</b>
+</div>
+    <table class="table" id="covid19Table">
+ 		<thead>
+        <tr>
+            <th>Country</th>
+            <th>State</th>
+            <th>Total cases reported</th>
+            <th>Today's new cases</th>
+            <th>New Cases(%)</th>
+        </tr>
+        </thead>
+        <tr th:each="coronaDetails : ${coronaDetails}">
+            <td th:text="${coronaDetails.country}"></td>
+            <td th:text="${coronaDetails.province}"></td>
+            <td th:text="${coronaDetails.totalNumberOfCases}"></td>
+            <td th:text="${coronaDetails.todaysNewCases}"></td>
+            <td th:text="${coronaDetails.todaysSurge}"></td>
+        </tr>
+    </table>
+    
+    <script>
+	function myFunction() {
+	  var input, filter, table, tr, td, i, txtValue;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("covid19Table");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[0];
+	    if (td) {
+	      txtValue = td.textContent || td.innerText;
+	      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    }       
+	  }
+	}
+	</script>
+</div>
+</body>
+</html>
