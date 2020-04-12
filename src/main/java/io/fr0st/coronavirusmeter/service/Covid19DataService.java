@@ -25,6 +25,7 @@ public class Covid19DataService {
 	
 	private static String COVID_19_DATA_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 	private static String VALUE_ZERO_PERCENT = "00.00";
+	private static String VALUE_100_PERCENT = "100.00";
 	
 	List<Covid19DataVO> covid19DataList = new ArrayList<>(); 
 	
@@ -86,10 +87,13 @@ public class Covid19DataService {
             	int todaysNewCase = Integer.parseInt(record.get(record.size()-1)) - Integer.parseInt(record.get(record.size()-2)); 
             	covid19DataVO.setTodaysNewCases(todaysNewCase);
             	
-            	if(todaysNewCase != 0) {
+            	if(todaysNewCase != 0 && todaysNewCase != Integer.parseInt(record.get(record.size()-1))) {
             		double todaysSurge  = ((double)todaysNewCase / Double.parseDouble(record.get(record.size()-2)))*100;
             		covid19DataVO.setTodaysSurge((Math.round(todaysSurge)));
-            	}
+            	} 
+            	else if(todaysNewCase != 0 && todaysNewCase == Integer.parseInt(record.get(record.size()-1))){
+            		covid19DataVO.setTodaysSurge(Double.parseDouble(VALUE_100_PERCENT));
+				}
             	else {
             		covid19DataVO.setTodaysSurge(Double.parseDouble(VALUE_ZERO_PERCENT));
             	}
