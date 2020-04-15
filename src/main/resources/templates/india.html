@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>COVID-19 World Meter</title>
-<link rel="icon" href="/covid19WithoutBG.png/" type="image/png">
+<link rel="icon" href="logo.png" type="image/png">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -69,12 +69,13 @@ body {
 </head>
 <body>
 	<div class="header">
-		<a href="/" class="logo"><img src="/covid19WithoutBG.png"
-			alt="COVID-19 World Meter" height="45" width="90">COVID-19
+		<a href="/" class="logo"><img src="logo.png"
+			alt="COVID-19 World Meter" height="90" width="90">COVID-19
 			World Meter</a>
 		<div class="header-right">
 			<a class="active" href="/">Home</a> <a href="/india">India</a> <a
-				href="https://www.covid19india.org/links">Helpful Links</a> <a href="/about">About</a>
+				href="/resources">Essential Resources</a> <a
+				href="/about">About</a>
 		</div>
 	</div>
 	<div class="container">
@@ -85,7 +86,6 @@ body {
 			</p></sub>
 		<p>The coronavirus COVID-19 pandemic is affecting 32 states and
 			union territories in India. The data is updated every 15 minutes.</p>
-
 		<div class="jumbotron">
 			<b>
 				<h1 class="display-4" th:text="${totalReportedCases}"></h1>
@@ -99,12 +99,10 @@ body {
 					<span>New Cases in %</span> <span th:text="${avgSurge}"></span>
 				</p>
 				<hr class="my-4">
-				<h5>Search for states :</h5> <input type="text"
-				id="myInput" onkeyup="myFunction()"
-				placeholder="Mumbai,Maharashtra,etc..">
+				<h5>Search for states :</h5> <input type="text" id="myInput"
+				onkeyup="myFunction()" placeholder="Maharashtra, Goa, etc..">
 			</b>
 		</div>
-
 		<table class="table" id="covid19IndiaTable">
 			<thead>
 				<tr>
@@ -143,7 +141,6 @@ body {
 				}
 			}
 		</script>
-
 	</div>
 </body>
 </html>

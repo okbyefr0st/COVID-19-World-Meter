@@ -69,56 +69,59 @@ body {
 </head>
 <body>
 	<div class="header">
-		<a href="/" class="logo"> <img src="logo.png"
+		<a href="/" class="logo"><img src="logo.png"
 			alt="COVID-19 World Meter" height="90" width="90">COVID-19
-			World Meter </a>
+			World Meter</a>
 		<div class="header-right">
 			<a class="active" href="/">Home</a> <a href="/india">India</a> <a
-				href="/resources">Essential Resources</a> <a href="/about">About</a>
+				href="/resources">Essential Resources</a> <a
+				href="/about">About</a>
 		</div>
 	</div>
 	<div class="container">
-		<h1>WORLD COVID-19 TRACKER</h1>
+		<h1>Essentials and Resources in INDIA</h1>
 		<h6>A CROWDSOURCED INITIATIVE</h6>
 		<sub><p>
-				PoweredBy : <a href="https://github.com/CSSEGISandData/COVID-19">Crowdsourced data on GitHub</a>
+				PoweredBy : <a href="https://www.covid19india.org">covid19india.org</a>
 			</p></sub>
-		<p>The coronavirus COVID-19 is affecting 205 countries and
-			territories around the world and 2 international conveyances. The day
-			is reset after midnight GMT+0, therefore you are viewing yesterdays data. We are working on it to get most recent data. Thanks for your support. :)</p>
+		<p>The coronavirus COVID-19 pandemic is affecting 32 states and
+			union territories in India. Considering your needs, we are providing you details of Essentials and Resources in your city, state and union territory. Share these info with your friends and family members. The data is updated daily by IST+0.</p>
 		<div class="jumbotron">
 			<b>
-				<h1 class="display-4" th:text="${totalReportedCases}"></h1>
-				<p class="lead">Total cases reported as of today</p>
+				<h1 class="display-4">Stay Home, Stay Safe, Stay Healthy</h1>
+				<p class="lead">We will win this war</p>
 				<hr class="my-4">
-				<p>
-					<span>New cases reported since previous day:</span> <span
-						th:text="${totalNewCases}"></span>
-				</p>
-				<p>
-					<span>New Cases in %</span> <span th:text="${avgSurge}"></span>
-				</p>
-				<hr class="my-4">
-				<h5>Search for countries :</h5> <input type="text" id="myInput"
-				onkeyup="myFunction()" placeholder="India,Spain,etc..">
+				<h5>Search for your state:</h5> <input type="text" id="myInput"
+				onkeyup="myFunction()" placeholder="Maharashtra, Goa, etc..">
 			</b>
 		</div>
-		<table class="table" id="covid19Table">
+		<table class="table" id="indianEssentialTable">
+			<col width="5%">
+			<col width="5%">
+			<col width="10%">
+			<col width="15%">
+			<col width="30%">
+			<col width="30%">
+			<col width="5%">
 			<thead>
 				<tr>
-					<th>Country</th>
 					<th>State</th>
-					<th>Total cases reported</th>
-					<th>Today's new cases</th>
-					<th>New Cases(%)</th>
+					<th>City</th>
+					<th>Category</th>
+					<th>Name of Organisation</th>
+					<th>Description</th>
+					<th>Website</th>
+					<th>Phone Number</th>
 				</tr>
 			</thead>
-			<tr th:each="coronaDetails : ${coronaDetails}">
-				<td th:text="${coronaDetails.country}"></td>
-				<td th:text="${coronaDetails.province}"></td>
-				<td th:text="${coronaDetails.totalNumberOfCases}"></td>
-				<td th:text="${coronaDetails.todaysNewCases}"></td>
-				<td th:text="${coronaDetails.todaysSurge}"></td>
+			<tr th:each="resourceDetails : ${resourceDetails}">
+				<td th:text="${resourceDetails.state}"></td>
+				<td th:text="${resourceDetails.city}"></td>
+				<td th:text="${resourceDetails.category}"></td>
+				<td th:text="${resourceDetails.nameoftheorganisation}"></td>
+				<td th:text="${resourceDetails.descriptionandorserviceprovided}"></td>
+				<td th:text="${resourceDetails.contact}"></td>
+				<td th:text="${resourceDetails.phonenumber}"></td>
 			</tr>
 		</table>
 		<script>
@@ -126,7 +129,7 @@ body {
 				var input, filter, table, tr, td, i, txtValue;
 				input = document.getElementById("myInput");
 				filter = input.value.toUpperCase();
-				table = document.getElementById("covid19Table");
+				table = document.getElementById("indianEssentialTable");
 				tr = table.getElementsByTagName("tr");
 				for (i = 0; i < tr.length; i++) {
 					td = tr[i].getElementsByTagName("td")[0];

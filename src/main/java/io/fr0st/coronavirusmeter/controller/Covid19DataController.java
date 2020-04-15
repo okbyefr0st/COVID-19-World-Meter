@@ -10,8 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import io.fr0st.coronavirusmeter.model.Covid19DataVO;
 import io.fr0st.coronavirusmeter.model.Covid19IndiaOutputVO;
+import io.fr0st.coronavirusmeter.model.Covid19ResourceOutputVO;
+import io.fr0st.coronavirusmeter.model.ResourceDetailsVO;
 import io.fr0st.coronavirusmeter.service.Covid19DataService;
 import io.fr0st.coronavirusmeter.service.Covid19IndiaDataService;
+import io.fr0st.coronavirusmeter.service.Covid19IndiaEssentialsService;
 
 @RestController
 public class Covid19DataController {
@@ -54,4 +57,17 @@ public class Covid19DataController {
 			modelAndView.setViewName("india");
 			return modelAndView;
 		}
+		
+		@Autowired
+		Covid19IndiaEssentialsService covid19IndiaEssentialsService;
+		
+			@RequestMapping(value = "/resources")
+			public ModelAndView resoures(Model model) {
+				ModelAndView modelAndView = new ModelAndView();
+				List<Covid19ResourceOutputVO> resourceDetails = covid19IndiaEssentialsService.getOutputList();
+				model.addAttribute("resourceDetails", resourceDetails);
+				modelAndView.setViewName("resources");
+				return modelAndView;
+				
+			}
 }
