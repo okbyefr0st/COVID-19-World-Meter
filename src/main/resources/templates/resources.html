@@ -96,22 +96,15 @@ body {
 			</b>
 		</div>
 		<table class="table" id="indianEssentialTable">
-			<col width="5%">
-			<col width="5%">
-			<col width="10%">
-			<col width="15%">
-			<col width="30%">
-			<col width="30%">
-			<col width="5%">
 			<thead>
 				<tr>
 					<th>State</th>
 					<th>City</th>
 					<th>Category</th>
-					<th>Name of Organisation</th>
+					<th>Name of Organization</th>
 					<th>Description</th>
-					<th>Website</th>
 					<th>Phone Number</th>
+					<th>Website</th>
 				</tr>
 			</thead>
 			<tr th:each="resourceDetails : ${resourceDetails}">
@@ -120,8 +113,8 @@ body {
 				<td th:text="${resourceDetails.category}"></td>
 				<td th:text="${resourceDetails.nameoftheorganisation}"></td>
 				<td th:text="${resourceDetails.descriptionandorserviceprovided}"></td>
-				<td th:text="${resourceDetails.contact}"></td>
 				<td th:text="${resourceDetails.phonenumber}"></td>
+				<td th:text="${resourceDetails.contact}"></td>
 			</tr>
 		</table>
 		<script>
